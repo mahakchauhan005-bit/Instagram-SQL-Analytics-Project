@@ -1,0 +1,6 @@
+-- =====================================================
+-- File: 03_Business_Questions.sql
+-- Project: Instagram SQL Analytics Project
+-- Purpose: Solve business analytics questions using SQL
+-- Author: Mahak Chauhan
+-- =====================================================
