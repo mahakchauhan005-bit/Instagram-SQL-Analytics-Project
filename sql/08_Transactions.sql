@@ -1,0 +1,6 @@
+-- =====================================================
+-- File:08_Transactions.sql
+-- Project: Instagram SQL Analytics Project
+-- Purpose: Demonstrate transaction handling and rollback
+-- Author: Mahak Chauhan
+-- =====================================================
