@@ -1,0 +1,6 @@
+-- =====================================================
+-- File: 06_Triggers.sql
+-- Project: Instagram SQL Analytics Project
+-- Purpose: Create triggers for automation
+-- Author: Mahak Chauhan
+-- =====================================================
