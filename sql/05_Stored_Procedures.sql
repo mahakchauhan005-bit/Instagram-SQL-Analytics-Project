@@ -1,0 +1,6 @@
+-- =====================================================
+-- File: 05_Stored_Procedures.sql
+-- Project: Instagram SQL Analytics Project
+-- Purpose: Create reusable stored procedures
+-- Author: Mahak Chauhan
+-- =====================================================
