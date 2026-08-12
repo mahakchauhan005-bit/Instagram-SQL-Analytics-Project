@@ -1,0 +1,6 @@
+-- =====================================================
+-- File: 02_Insert_Data.sql
+-- Project: Instagram SQL Analytics Project
+-- Purpose: Insert sample data into all tables
+-- Author: Mahak Chauhan
+-- =====================================================
