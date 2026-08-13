@@ -156,31 +156,23 @@ Execute the SQL scripts in the following order:
 
 ---
 
-## 📷 Screenshots
+## 📷 Project Screenshots
 
 ### ER Diagram
 
-```markdown
-![ER Diagram](ER_Diagram.png)
-```
+![ER Diagram](er-diagram/ER_Diagram.png)
 
 ### Database Tables
 
-```markdown
 ![Tables](screenshots/tables.png)
-```
 
 ### Business Query Example
 
-```markdown
 ![Queries](screenshots/queries.png)
-```
 
 ### Advanced SQL Output
 
-```markdown
 ![Output](screenshots/output.png)
-```
 
 ---
 
