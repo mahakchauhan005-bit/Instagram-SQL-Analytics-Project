@@ -1,0 +1,191 @@
+ CREATE DATABASE instagram_analytics_db;
+
+USE instagram_analytics_db;
+####  USER TABLE
+CREATE TABLE Users
+(
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    FullName VARCHAR(100),
+    Bio VARCHAR(255),
+    DateOfBirth DATE,
+    Country VARCHAR(50),
+    JoinDate DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+SELECT * FROM Users;
+#### POST TABLE
+CREATE TABLE Posts
+(
+    PostID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    Caption VARCHAR(500),
+    ContentType ENUM('Image','Video','Reel','Carousel') NOT NULL,
+    Location VARCHAR(100),
+    PostDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    IsArchived BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+SELECT *FROM Posts;
+
+#### COMMENTS TABLE
+CREATE TABLE Comments
+(
+    CommentID INT AUTO_INCREMENT PRIMARY KEY,
+    PostID INT NOT NULL,
+    UserID INT NOT NULL,
+    CommentText VARCHAR(500) NOT NULL,
+    CommentDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (PostID)
+        REFERENCES Posts(PostID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Comments;
+
+#### LIKE TABLE
+CREATE TABLE Likes
+(
+    LikeID INT AUTO_INCREMENT PRIMARY KEY,
+    PostID INT NOT NULL,
+    UserID INT NOT NULL,
+    LikeDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (PostID)
+        REFERENCES Posts(PostID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Likes;
+
+### FOLLOWER TABLE
+
+CREATE TABLE Followers
+(
+    FollowID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    FollowerUserID INT NOT NULL,
+    FollowDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (FollowerUserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Followers;
+
+#### MESSAGE TABLE
+
+CREATE TABLE Messages
+(
+    MessageID INT AUTO_INCREMENT PRIMARY KEY,
+    SenderID INT NOT NULL,
+    ReceiverID INT NOT NULL,
+    MessageText VARCHAR(1000) NOT NULL,
+    SentDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    IsRead BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY (SenderID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (ReceiverID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Messages;
+
+#### STORY TABLE
+
+CREATE TABLE Stories
+(
+    StoryID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    MediaType ENUM('Image','Video') NOT NULL,
+    StoryDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    ExpiryDate DATETIME,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Stories;
+
+### HASHTAGS TABLE
+
+CREATE TABLE Hashtags
+(
+    HashtagID INT AUTO_INCREMENT PRIMARY KEY,
+    HashtagName VARCHAR(100) UNIQUE NOT NULL
+);
+
+SELECT * FROM Hashtags;
+
+#### POSTHASHTAG TABLE
+
+CREATE TABLE PostHashtags
+(
+    PostID INT NOT NULL,
+    HashtagID INT NOT NULL,
+
+    PRIMARY KEY(PostID, HashtagID),
+
+    FOREIGN KEY (PostID)
+        REFERENCES Posts(PostID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    FOREIGN KEY (HashtagID)
+        REFERENCES Hashtags(HashtagID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM PostHashtags;
+
+#### NOTIFICATION TABLE
+
+CREATE TABLE Notifications
+(
+    NotificationID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    Message VARCHAR(255) NOT NULL,
+    NotificationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    IsRead BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY (UserID)
+        REFERENCES Users(UserID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+SELECT * FROM Notifications;
