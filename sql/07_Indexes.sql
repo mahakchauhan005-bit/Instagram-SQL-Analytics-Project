@@ -1,6 +1,0 @@
--- =====================================================
--- File:07_Indexes.sql
--- Project: Instagram SQL Analytics Project
--- Purpose: Improve query performance using indexes
--- Author: Mahak Chauhan
--- =====================================================
