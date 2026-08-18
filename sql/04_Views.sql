@@ -1,6 +1,0 @@
--- =====================================================
--- File: 04_Views.sql
--- Project: Instagram SQL Analytics Project
--- Purpose: Create analytical SQL views
--- Author: Mahak Chauhan
--- =====================================================
